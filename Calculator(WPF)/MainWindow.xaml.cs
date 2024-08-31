@@ -58,8 +58,8 @@ namespace Calculator_WPF_
             {
                 OperationBlock.Text = send.Content.ToString();  //блок вывода выбранной операции
 
-                Calc_Method(index);
-
+               Calc_Method(index);
+                
             }
             else
                 CalcSpecial_Method(index);
@@ -102,11 +102,21 @@ namespace Calculator_WPF_
         {
             switch (index_last)
             {
-                case 3: result += number; break;
-                case 4: result -= number; break;
-                case 5: result *= number; break;
-                case 6: result /= number; break;
-                case 7: result %= number; break;
+                case 3:
+                    result += number;
+                    break;
+                case 4:
+                    result -= number;
+                    break;
+                case 5:
+                    result *= number;
+                    break;
+                case 6:
+                    result /= number;
+                    break;
+                case 7:
+                    result %= number;
+                    break;
             }
             index_last = index;
             LastNumBlock.Text = result.ToString();
@@ -114,23 +124,39 @@ namespace Calculator_WPF_
         }
         public void CalcSpecial_Method(int index) // выполнение мгновенных операций
         {
-            var specialOperations = new Dictionary<int, Func<double, double>>
+            switch (index)
             {
-                { 8, Math.Sqrt },
-                { 9, x => Math.Pow(x, 2) },
-                { 10, x => Math.Log(x, 2) },
-                { 11, Math.Sin },
-                { 12, Math.Cos },
-                { 13, Math.Tan },
-                { 14, Math.Log10 },
-                { 15, Math.Sinh },
-                { 16, Math.Cosh },
-                { 17, Math.Tanh }
-            };
-
-            if (specialOperations.ContainsKey(index))
-                number = specialOperations[index](number);
-
+                case 8:
+                    number = Math.Sqrt(number);
+                    break;
+                case 9:
+                    number = Math.Pow(number, 2);
+                    break;
+                case 10:
+                    number = Math.Log(number, 2);
+                    break;
+                case 11:
+                    number = Math.Sin(number);
+                    break;
+                case 12:
+                    number = Math.Cos(number);
+                    break;
+                case 13:
+                    number = Math.Tan(number);
+                    break;
+                case 14:
+                    number = Math.Log10(number);
+                    break;
+                case 15:
+                    number = Math.Sinh(number);
+                    break;
+                case 16:
+                    number = Math.Cosh(number);
+                    break;
+                case 17:
+                    number = Math.Tanh(number);
+                    break;
+            }
             CalculatorBlock.Text = number.ToString();
         }
     }
